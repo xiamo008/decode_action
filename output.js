@@ -1,7 +1,10 @@
+//Thu Jul 25 2024 07:01:23 GMT+0000 (Coordinated Universal Time)
+//Base:https://github.com/echo094/decode-js
+//Modify:https://github.com/smallfawn/decode_action
 //Thu Jul 25 2024 06:55:25 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-const $ = new Env("大牌联合0725");
+const $ = new Env("\u5927\u724C\u8054\u54080725");
 const jdCookie = require("./jdCookie"),
   common = require("./utils/Rebels_jdCommon"),
   notify = require("./utils/Rebels_sendJDNotify"),
@@ -16,45 +19,45 @@ const jdCookie = require("./jdCookie"),
   hotbreak = process.env.jd_dplh_break === "true";
 let waitTimes = parseInt(dplh_wait) * 1000;
 const prize_type = {
-  jdMarket: "[京豆]",
-  coin: "[金币]",
-  point: "[积分]",
-  integral: "[积分]",
-  goods: "[实物]",
-  product: "[广告]",
-  coupon: "[优惠券]",
-  chance: "[次数]",
-  card: "[卡片]"
+  jdMarket: "[\u4EAC\u8C46]",
+  coin: "[\u91D1\u5E01]",
+  point: "[\u79EF\u5206]",
+  integral: "[\u79EF\u5206]",
+  goods: "[\u5B9E\u7269]",
+  product: "[\u5E7F\u544A]",
+  coupon: "[\u4F18\u60E0\u5238]",
+  chance: "[\u6B21\u6570]",
+  card: "[\u5361\u7247]"
 };
 let cookie = "",
   originCookie = "",
   cookiesArr = Object.keys(jdCookie).map(_0x26a09d => jdCookie[_0x26a09d]).filter(_0x420e3d => _0x420e3d);
-!cookiesArr[0] && ($.msg($.name, "【提示】请先获取Cookie"), process.exit(1));
+!cookiesArr[0] && ($.msg($.name, "\u3010\u63D0\u793A\u3011\u8BF7\u5148\u83B7\u53D6Cookie"), process.exit(1));
 $.blacklist = process.env.jd_dplh_blacklist || "";
 getBlacklist();
 $.errMsgPin = [];
 $.errOpencard = [];
 !(async () => {
-  console.log("==========" + $.name + "变量开启状态==========");
-  console.log("开卡类活动不会自动运行，请自行测试是否有水");
-  console.log("代理开关: [" + common.getProxyStatus() + "]");
-  console.log("间隔时长: [" + (waitTimes === 0 ? "无" : waitTimes / 1000 + "秒") + "]运行间隔时长");
-  console.log("浏览任务: [" + (dplh_viewShop ? "开启" : "关闭") + "]");
-  console.log("加购任务: [" + (dplh_AddCart ? "开启" : "关闭") + "]");
-  console.log("IP限制后继续执行: [" + (hotbreak ? "开启" : "关闭") + "]");
-  console.log("==========" + $.name + "变量状态结束==========");
+  console.log("==========" + $.name + "\u53D8\u91CF\u5F00\u542F\u72B6\u6001==========");
+  console.log("\u5F00\u5361\u7C7B\u6D3B\u52A8\u4E0D\u4F1A\u81EA\u52A8\u8FD0\u884C\uFF0C\u8BF7\u81EA\u884C\u6D4B\u8BD5\u662F\u5426\u6709\u6C34");
+  console.log("\u4EE3\u7406\u5F00\u5173: [" + common.getProxyStatus() + "]");
+  console.log("\u95F4\u9694\u65F6\u957F: [" + (waitTimes === 0 ? "\u65E0" : waitTimes / 1000 + "\u79D2") + "]\u8FD0\u884C\u95F4\u9694\u65F6\u957F");
+  console.log("\u6D4F\u89C8\u4EFB\u52A1: [" + (dplh_viewShop ? "\u5F00\u542F" : "\u5173\u95ED") + "]");
+  console.log("\u52A0\u8D2D\u4EFB\u52A1: [" + (dplh_AddCart ? "\u5F00\u542F" : "\u5173\u95ED") + "]");
+  console.log("IP\u9650\u5236\u540E\u7EE7\u7EED\u6267\u884C: [" + (hotbreak ? "\u5F00\u542F" : "\u5173\u95ED") + "]");
+  console.log("==========" + $.name + "\u53D8\u91CF\u72B6\u6001\u7ED3\u675F==========");
   if (!activityUrl) {
-    console.log("⚠ 请先定义必要的环境变量后再运行脚本");
+    console.log("\u26A0 \u8BF7\u5148\u5B9A\u4E49\u5FC5\u8981\u7684\u73AF\u5883\u53D8\u91CF\u540E\u518D\u8FD0\u884C\u811A\u672C");
     return;
   }
   authorCodeList = await getAuthorCodeList("http://code.257999.xyz/jd_dplh.json");
-  authorCodeList ? (console.log("\n服务状态正常，活动获取成功"), $.authorCode = authorCodeList[random(0, authorCodeList.length)]) : ($.authorCode = "", console.log("\n服务状态异常，请检查网络是否正常\n"));
+  authorCodeList ? (console.log("\n\u670D\u52A1\u72B6\u6001\u6B63\u5E38\uFF0C\u6D3B\u52A8\u83B7\u53D6\u6210\u529F"), $.authorCode = authorCodeList[random(0, authorCodeList.length)]) : ($.authorCode = "", console.log("\n\u670D\u52A1\u72B6\u6001\u5F02\u5E38\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u662F\u5426\u6B63\u5E38\n"));
   $.activityUrl = activityUrl;
   $.activityUrl && ($.activityUrl.includes("actId=") ? $.activityId = common.getUrlParameter(activityUrl, "actId") : $.activityId = $.activityUrl);
   $.hostname = "jinggengjcq-isv.isvjcloud.com";
   $.baseUrl = "https://" + $.hostname;
   if (!$.activityId) {
-    console.log("⚠ 请填写格式正确的变量");
+    console.log("\u26A0 \u8BF7\u586B\u5199\u683C\u5F0F\u6B63\u786E\u7684\u53D8\u91CF");
     return;
   }
   notify.config({
@@ -67,13 +70,13 @@ $.errOpencard = [];
     const _0xd7694d = _0x4fc9c9.split("|");
     $.randNum = Math.floor(Math.random() * _0xd7694d.length);
     if (_0xd7694d[$.randNum] === "") {
-      console.log("❌ 随机抽取到的收货地址信息为空，请正确使用 \"|\" 管道符以用于分割多个收货地址！\n");
+      console.log("\u274C \u968F\u673A\u62BD\u53D6\u5230\u7684\u6536\u8D27\u5730\u5740\u4FE1\u606F\u4E3A\u7A7A\uFF0C\u8BF7\u6B63\u786E\u4F7F\u7528 \"|\" \u7BA1\u9053\u7B26\u4EE5\u7528\u4E8E\u5206\u5272\u591A\u4E2A\u6536\u8D27\u5730\u5740\uFF01\n");
       return false;
     }
     const [_0x178f72, _0x2fbb79, _0x3274a0, _0x31d483, _0x10ef16, _0x3644db] = _0xd7694d[$.randNum].split("@");
     for (let _0x12bf0c = 0; _0x12bf0c < 6; _0x12bf0c++) {
       if (_0xd7694d[_0x12bf0c] === "") {
-        console.log("❌ 随机抽取到的收货地址信息格式存在错误（参数不能为空）\n");
+        console.log("\u274C \u968F\u673A\u62BD\u53D6\u5230\u7684\u6536\u8D27\u5730\u5740\u4FE1\u606F\u683C\u5F0F\u5B58\u5728\u9519\u8BEF\uFF08\u53C2\u6570\u4E0D\u80FD\u4E3A\u7A7A\uFF09\n");
         return false;
       }
     }
@@ -93,7 +96,7 @@ $.errOpencard = [];
     $.UA = common.genUA($.UserName);
     $.message = notify.create($.index, $.UserName);
     $.nickName = "";
-    console.log("\n******开始【京东账号" + $.index + "】" + ($.nickName || $.UserName) + "******\n");
+    console.log("\n******\u5F00\u59CB\u3010\u4EAC\u4E1C\u8D26\u53F7" + $.index + "\u3011" + ($.nickName || $.UserName) + "******\n");
     await Main();
     common.unsetCookie();
     if ($.outFlag || $.runEnd) {
@@ -101,14 +104,14 @@ $.errOpencard = [];
     }
   }
   if ($.errMsgPin.length > 0) {
-    let _0x1001ba = "\n以下账号可能是火爆，请加入黑名单\nexport jd_dplh_blacklist=\"" + $.errMsgPin.join("&") + "\"";
+    let _0x1001ba = "\n\u4EE5\u4E0B\u8D26\u53F7\u53EF\u80FD\u662F\u706B\u7206\uFF0C\u8BF7\u52A0\u5165\u9ED1\u540D\u5355\nexport jd_dplh_blacklist=\"" + $.errMsgPin.join("&") + "\"";
     console.log(_0x1001ba);
   }
   if ($.errOpencard.length > 0) {
-    let _0x2bc94a = "\n以下账号开卡火爆，请自行决定是否加入黑名单\n\"" + $.errOpencard.join("&") + "\"";
+    let _0x2bc94a = "\n\u4EE5\u4E0B\u8D26\u53F7\u5F00\u5361\u706B\u7206\uFF0C\u8BF7\u81EA\u884C\u51B3\u5B9A\u662F\u5426\u52A0\u5165\u9ED1\u540D\u5355\n\"" + $.errOpencard.join("&") + "\"";
     console.log(_0x2bc94a);
   }
-  isNotify && notify.getMessage() && (notify.appendContent("\n【活动ID】" + $.activityId), await notify.push());
+  isNotify && notify.getMessage() && (notify.appendContent("\n\u3010\u6D3B\u52A8ID\u3011" + $.activityId), await notify.push());
 })().catch(_0xb388a5 => $.logErr(_0xb388a5)).finally(() => $.done());
 async function Main() {
   try {
@@ -120,14 +123,14 @@ async function Main() {
     }
     $.jdToken = await getToken(originCookie, $.baseUrl);
     if (!$.jdToken) {
-      console.log("获取 Token 失败！");
-      $.message.fix("获取[Token]失败");
+      console.log("\u83B7\u53D6 Token \u5931\u8D25\uFF01");
+      $.message.fix("\u83B7\u53D6[Token]\u5931\u8D25");
       return;
     }
     $.activityload = "";
     await sendRequest("activity_load");
     if ($.MixNick == "") {
-      console.log("获取[活动信息]失败，可能是黑号或者太卡了");
+      console.log("\u83B7\u53D6[\u6D3B\u52A8\u4FE1\u606F]\u5931\u8D25\uFF0C\u53EF\u80FD\u662F\u9ED1\u53F7\u6216\u8005\u592A\u5361\u4E86");
       return;
     }
     if ($.runEnd || $.outFlag || $.skipRun) {
@@ -137,24 +140,24 @@ async function Main() {
       $.hasGetBasicInfo = true;
       const _0x395f0b = $.time("yyyy-MM-dd HH:mm", $.startTime),
         _0x13a78c = $.time("yyyy-MM-dd HH:mm", $.endTime);
-      console.log("活动名称：#联合开卡[" + $.activityId + "]\n开始时间：" + _0x395f0b + "\n结束时间：" + _0x13a78c);
-      notify.appendContent("活动名称：#联合开卡[" + $.activityId + "]\n开始时间：" + _0x395f0b + "\n结束时间：" + _0x13a78c);
+      console.log("\u6D3B\u52A8\u540D\u79F0\uFF1A#\u8054\u5408\u5F00\u5361[" + $.activityId + "]\n\u5F00\u59CB\u65F6\u95F4\uFF1A" + _0x395f0b + "\n\u7ED3\u675F\u65F6\u95F4\uFF1A" + _0x13a78c);
+      notify.appendContent("\u6D3B\u52A8\u540D\u79F0\uFF1A#\u8054\u5408\u5F00\u5361[" + $.activityId + "]\n\u5F00\u59CB\u65F6\u95F4\uFF1A" + _0x395f0b + "\n\u7ED3\u675F\u65F6\u95F4\uFF1A" + _0x13a78c);
       const _0x2585f8 = Date.now();
       if ($.startTime && _0x2585f8 < $.startTime) {
-        console.log("活动将在 " + _0x395f0b + " 开始，晚点再来吧~");
-        $.message.fix("活动尚未开始，开始时间：" + _0x395f0b);
+        console.log("\u6D3B\u52A8\u5C06\u5728 " + _0x395f0b + " \u5F00\u59CB\uFF0C\u665A\u70B9\u518D\u6765\u5427~");
+        $.message.fix("\u6D3B\u52A8\u5C1A\u672A\u5F00\u59CB\uFF0C\u5F00\u59CB\u65F6\u95F4\uFF1A" + _0x395f0b);
         $.runEnd = true;
         return;
       }
       if ($.endTime && _0x2585f8 > $.endTime) {
-        console.log("活动已于 " + _0x13a78c + " 结束，下次早点来吧~");
-        $.message.fix("活动已结束，结束时间：" + _0x13a78c);
+        console.log("\u6D3B\u52A8\u5DF2\u4E8E " + _0x13a78c + " \u7ED3\u675F\uFF0C\u4E0B\u6B21\u65E9\u70B9\u6765\u5427~");
+        $.message.fix("\u6D3B\u52A8\u5DF2\u7ED3\u675F\uFF0C\u7ED3\u675F\u65F6\u95F4\uFF1A" + _0x13a78c);
         $.runEnd = true;
         return;
       }
     }
-    console.log("账号活动信息：\n助力码：[" + $.MixNick + "]\n");
-    $.inviteNick && (await sendRequest("绑定"), await $.wait(parseInt(waitTimes * 1 + 100, 10)));
+    console.log("\u8D26\u53F7\u6D3B\u52A8\u4FE1\u606F\uFF1A\n\u52A9\u529B\u7801\uFF1A[" + $.MixNick + "]\n");
+    $.inviteNick && (await sendRequest("\u7ED1\u5B9A"), await $.wait(parseInt(waitTimes * 1 + 100, 10)));
     if ($.runEnd || $.outFlag) {
       return;
     }
@@ -163,7 +166,7 @@ async function Main() {
     await $.wait(parseInt(waitTimes * 1 + 100, 10));
     if ($.shopList) {
       let _0x107d51 = ($.shopList || []).filter(_0x98a89a => _0x98a89a.open == false);
-      console.log("共有" + $.shopList.length + "张卡,还需开" + _0x107d51.length + "张卡");
+      console.log("\u5171\u6709" + $.shopList.length + "\u5F20\u5361,\u8FD8\u9700\u5F00" + _0x107d51.length + "\u5F20\u5361");
       for (let _0x5aead0 of _0x107d51 || []) {
         if (!_0x5aead0.open) {
           $.missionType = "openCard";
@@ -176,10 +179,10 @@ async function Main() {
           await $.wait(parseInt(waitTimes * 1 + 1000, 10));
           const _0x22e4c4 = await common.joinShopMember($.joinVenderId);
           if (_0x22e4c4) {
-            console.log("加入[" + $.shopTitle + "]店铺会员成功");
+            console.log("\u52A0\u5165[" + $.shopTitle + "]\u5E97\u94FA\u4F1A\u5458\u6210\u529F");
             await $.wait(parseInt(waitTimes * 1 + 100, 10));
           } else {
-            console.log("[" + $.shopTitle + "]店铺开卡失败,跳过执行~");
+            console.log("[" + $.shopTitle + "]\u5E97\u94FA\u5F00\u5361\u5931\u8D25,\u8DF3\u8FC7\u6267\u884C~");
             break;
           }
           await sendRequest("activity_load");
@@ -189,7 +192,7 @@ async function Main() {
       }
     }
     $.hasCollectShop == 0 && ($.missionType = "uniteCollectShop", await sendRequest("mission"), await $.wait(parseInt(waitTimes * 1 + 1000, 10)));
-    dplh_AddCart ? $.hasAddCart == 0 && ($.missionType = "uniteAddCart", await sendRequest("mission"), await $.wait(parseInt(waitTimes * 1 + 1000, 10))) : console.log("未设置加购任务变量，不执行加购任务\n");
+    dplh_AddCart ? $.hasAddCart == 0 && ($.missionType = "uniteAddCart", await sendRequest("mission"), await $.wait(parseInt(waitTimes * 1 + 1000, 10))) : console.log("\u672A\u8BBE\u7F6E\u52A0\u8D2D\u4EFB\u52A1\u53D8\u91CF\uFF0C\u4E0D\u6267\u884C\u52A0\u8D2D\u4EFB\u52A1\n");
     if (dplh_viewShop) {
       if ($.shopList) {
         for (let _0x29a93e of $.shopList || []) {
@@ -200,7 +203,7 @@ async function Main() {
         }
       }
     } else {
-      console.log("未设置浏览任务变量，不执行浏览任务\n");
+      console.log("\u672A\u8BBE\u7F6E\u6D4F\u89C8\u4EFB\u52A1\u53D8\u91CF\uFF0C\u4E0D\u6267\u884C\u6D4F\u89C8\u4EFB\u52A1\n");
     }
     await sendRequest("list");
     await $.wait(parseInt(waitTimes * 1 + 100, 10));
@@ -210,27 +213,27 @@ async function Main() {
         if (_0x4fc742 > dplh_draw) {
           _0x4fc742 = dplh_draw;
         }
-        console.log("设定抽奖次数为:" + _0x4fc742 + "，当前积分：" + $.remainPoint);
+        console.log("\u8BBE\u5B9A\u62BD\u5956\u6B21\u6570\u4E3A:" + _0x4fc742 + "\uFF0C\u5F53\u524D\u79EF\u5206\uFF1A" + $.remainPoint);
         for (m = 1; _0x4fc742--; m++) {
-          console.log("第" + m + "次抽奖");
+          console.log("\u7B2C" + m + "\u6B21\u62BD\u5956");
           await $.wait(parseInt(waitTimes * 1 + 3000, 10));
-          await sendRequest("抽奖");
+          await sendRequest("\u62BD\u5956");
           if (Number(_0x4fc742) <= 0) {
             break;
           }
           if (m >= 10) {
-            console.log("抽奖太多次，多余的次数请再执行脚本");
+            console.log("\u62BD\u5956\u592A\u591A\u6B21\uFF0C\u591A\u4F59\u7684\u6B21\u6570\u8BF7\u518D\u6267\u884C\u811A\u672C");
             break;
           }
           await $.wait(parseInt(waitTimes * 1 + 3000, 10));
         }
       }
     }
-    console.log("当前助力:[" + ($.inviteNick || "未获取到数据") + "]");
-    $.index == 1 && ($.inviteNick = $.MixNick, console.log("后面都助力:[" + $.inviteNick + "]"));
+    console.log("\u5F53\u524D\u52A9\u529B:[" + ($.inviteNick || "\u672A\u83B7\u53D6\u5230\u6570\u636E") + "]");
+    $.index == 1 && ($.inviteNick = $.MixNick, console.log("\u540E\u9762\u90FD\u52A9\u529B:[" + $.inviteNick + "]"));
     await $.wait(parseInt(waitTimes * 1 + 100, 10));
   } catch (_0x42bfa5) {
-    console.log("❌ 脚本运行遇到了错误\n" + _0x42bfa5);
+    console.log("\u274C \u811A\u672C\u8FD0\u884C\u9047\u5230\u4E86\u9519\u8BEF\n" + _0x42bfa5);
   }
 }
 async function handleResponse(_0x4ba7a4, _0xcf9f08) {
@@ -257,21 +260,21 @@ async function handleResponse(_0x4ba7a4, _0xcf9f08) {
             console.log($.activityload?.["openCardMsg"]);
           }
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? (console.log("" + _0xcf9f08.errorMessage), $.errMsgPin.push($.UserName), $.message.fix("" + _0xcf9f08.errorMessage), $.skipRun = true) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? (console.log("" + _0xcf9f08.errorMessage), $.errMsgPin.push($.UserName), $.message.fix("" + _0xcf9f08.errorMessage), $.skipRun = true) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
-      case "绑定":
+      case "\u7ED1\u5B9A":
         if (_0xcf9f08.success && _0xcf9f08.data?.["status"] == 200) {
           console.log("" + _0xcf9f08.data?.["msg"]);
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? (console.log("" + _0xcf9f08.errorMessage), ["结束", "开始"].some(_0x32a798 => _0xcf9f08.errorMessage.includes(_0x32a798)) && ($.runEnd = true)) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? (console.log("" + _0xcf9f08.errorMessage), ["\u7ED3\u675F", "\u5F00\u59CB"].some(_0x32a798 => _0xcf9f08.errorMessage.includes(_0x32a798)) && ($.runEnd = true)) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "shopList":
         if (_0xcf9f08.success && _0xcf9f08.data?.["status"] == 200) {
           $.shopList = _0xcf9f08?.["data"]?.["data"] || [];
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "mission":
@@ -280,14 +283,14 @@ async function handleResponse(_0x4ba7a4, _0xcf9f08) {
           console.log("" + (_0xcf9f08.msg || $.mission?.["remark"] || ""));
           $.message.fix("" + (_0xcf9f08.msg || $.mission?.["remark"] || ""));
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "getAwardSettingList":
         if (_0xcf9f08.success && _0xcf9f08.data?.["status"] == 200) {
           $.getAwardSettingList = _0xcf9f08?.["data"]?.["data"]?.["awardSettings"];
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "exchangePost":
@@ -298,23 +301,23 @@ async function handleResponse(_0x4ba7a4, _0xcf9f08) {
             _0x33bbd4 = _0x3ede99?.["awardType"];
           switch (_0x33bbd4) {
             case "jdMarket":
-              console.log("🎉 " + _0x3ede99?.["awardName"] + " 🐶");
-              $.message.fix("🎉 " + _0x3ede99?.["awardName"] + " 🐶");
+              console.log("\uD83C\uDF89 " + _0x3ede99?.["awardName"] + " \uD83D\uDC36");
+              $.message.fix("\uD83C\uDF89 " + _0x3ede99?.["awardName"] + " \uD83D\uDC36");
               break;
             case "point":
             case "integral":
-              console.log("🗑️ " + _0x3ede99?.["awardName"] + "  🎟️");
-              $.message.fix("🗑️ " + _0x3ede99?.["awardName"] + "  🎟️");
+              console.log("\uD83D\uDDD1\uFE0F " + _0x3ede99?.["awardName"] + "  \uD83C\uDF9F\uFE0F");
+              $.message.fix("\uD83D\uDDD1\uFE0F " + _0x3ede99?.["awardName"] + "  \uD83C\uDF9F\uFE0F");
               break;
             case "goods":
               $.generateId = _0x3ede99?.["id"];
               $.prizeShiWu = _0x3ede99?.["awardName"];
-              console.log("🎉 恭喜获得实物~");
-              console.log("奖品名称：" + $.prizeShiWu);
+              console.log("\uD83C\uDF89 \u606D\u559C\u83B7\u5F97\u5B9E\u7269~");
+              console.log("\u5956\u54C1\u540D\u79F0\uFF1A" + $.prizeShiWu);
               if (_0x3ede99?.["awardPic"]) {
-                console.log("预览图片：" + _0x3ede99?.["awardPic"]);
+                console.log("\u9884\u89C8\u56FE\u7247\uFF1A" + _0x3ede99?.["awardPic"]);
               }
-              $.message.fix("🎉 恭喜获得实物，奖品名称：" + $.prizeShiWu);
+              $.message.fix("\uD83C\uDF89 \u606D\u559C\u83B7\u5F97\u5B9E\u7269\uFF0C\u5956\u54C1\u540D\u79F0\uFF1A" + $.prizeShiWu);
               process.env.WX_ADDRESS && (await sendRequest("updateAddress"), await $.wait(4000));
               break;
             case "coin":
@@ -322,21 +325,21 @@ async function handleResponse(_0x4ba7a4, _0xcf9f08) {
             case "coupon":
             case "chance":
             case "card":
-              console.log("🗑️ " + prize_type[prizeType]);
+              console.log("\uD83D\uDDD1\uFE0F " + prize_type[prizeType]);
               break;
             default:
-              console.log(_0x33bbd4 + " 暂时未收录，请联系作者添加\n");
+              console.log(_0x33bbd4 + " \u6682\u65F6\u672A\u6536\u5F55\uFF0C\u8BF7\u8054\u7CFB\u4F5C\u8005\u6DFB\u52A0\n");
               console.log("" + JSON.stringify($.exchangePost));
           }
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "inviteList":
         if (_0xcf9f08.success && _0xcf9f08.data?.["status"] == 200) {
           $.inviteList = _0xcf9f08?.["data"]?.["data"];
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "list":
@@ -347,44 +350,44 @@ async function handleResponse(_0x4ba7a4, _0xcf9f08) {
             _0x38d96c += Number(_0xb0285b.awardDes);
           }
           if (_0x38d96c > 0) {
-            console.log("查询奖励成功，累计获得" + _0x38d96c + "京豆\n");
+            console.log("\u67E5\u8BE2\u5956\u52B1\u6210\u529F\uFF0C\u7D2F\u8BA1\u83B7\u5F97" + _0x38d96c + "\u4EAC\u8C46\n");
           }
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
       case "updateAddress":
         if (_0xcf9f08.success && _0xcf9f08.data?.["status"] == 200) {
-          _0xcf9f08?.["data"]?.["data"]?.["result"] ? (console.log("已提交收货地址 ✅\n登记为随机抽取到的第" + ($.randNum + 1) + "套收货地址信息\n联系信息：" + $.receiver + " (" + $.phone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2") + "）\n"), !isNotify && (await notify.sendNotify($.name + "中奖通知", "【京东账号" + $.index + "】" + $.nickName + "\n抽中实物 " + $.prizeShiWu + "，已成功自动登记收货地址\n\n活动ID：" + $.activityId)), $.message.insert($.prizeShiWu + "(已填地址)🎁")) : console.log(_0xcf9f08.data.data);
+          _0xcf9f08?.["data"]?.["data"]?.["result"] ? (console.log("\u5DF2\u63D0\u4EA4\u6536\u8D27\u5730\u5740 \u2705\n\u767B\u8BB0\u4E3A\u968F\u673A\u62BD\u53D6\u5230\u7684\u7B2C" + ($.randNum + 1) + "\u5957\u6536\u8D27\u5730\u5740\u4FE1\u606F\n\u8054\u7CFB\u4FE1\u606F\uFF1A" + $.receiver + " (" + $.phone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2") + "\uFF09\n"), !isNotify && (await notify.sendNotify($.name + "\u4E2D\u5956\u901A\u77E5", "\u3010\u4EAC\u4E1C\u8D26\u53F7" + $.index + "\u3011" + $.nickName + "\n\u62BD\u4E2D\u5B9E\u7269 " + $.prizeShiWu + "\uFF0C\u5DF2\u6210\u529F\u81EA\u52A8\u767B\u8BB0\u6536\u8D27\u5730\u5740\n\n\u6D3B\u52A8ID\uFF1A" + $.activityId)), $.message.insert($.prizeShiWu + "(\u5DF2\u586B\u5730\u5740)\uD83C\uDF81")) : console.log(_0xcf9f08.data.data);
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
-      case "抽奖":
-        console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+      case "\u62BD\u5956":
+        console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         if (_0xcf9f08.success && _0xcf9f08.data?.["status"] == 200) {
           $.dplhdraw = _0xcf9f08?.["data"]?.["data"];
           let _0x16ad40 = $.dplhdraw?.["awardSendLog"],
             _0x325127 = _0x16ad40?.["awardType"];
           switch (_0x325127) {
             case "jdMarket":
-              console.log("🎉 " + _0x16ad40?.["awardName"] + " 🐶");
-              $.message.fix("🎉 " + _0x16ad40?.["awardName"] + " 🐶");
+              console.log("\uD83C\uDF89 " + _0x16ad40?.["awardName"] + " \uD83D\uDC36");
+              $.message.fix("\uD83C\uDF89 " + _0x16ad40?.["awardName"] + " \uD83D\uDC36");
               break;
             case "point":
             case "integral":
-              console.log("🗑️ " + _0x16ad40?.["awardName"] + "  🎟️");
-              $.message.fix("🗑️ " + _0x16ad40?.["awardName"] + "  🎟️");
+              console.log("\uD83D\uDDD1\uFE0F " + _0x16ad40?.["awardName"] + "  \uD83C\uDF9F\uFE0F");
+              $.message.fix("\uD83D\uDDD1\uFE0F " + _0x16ad40?.["awardName"] + "  \uD83C\uDF9F\uFE0F");
               break;
             case "goods":
               $.generateId = _0x16ad40?.["id"];
               $.prizeShiWu = _0x16ad40?.["awardName"];
-              console.log("🎉 恭喜获得实物~");
-              console.log("奖品名称：" + $.prizeShiWu);
+              console.log("\uD83C\uDF89 \u606D\u559C\u83B7\u5F97\u5B9E\u7269~");
+              console.log("\u5956\u54C1\u540D\u79F0\uFF1A" + $.prizeShiWu);
               if (_0x16ad40?.["awardPic"]) {
-                console.log("预览图片：" + _0x16ad40?.["awardPic"]);
+                console.log("\u9884\u89C8\u56FE\u7247\uFF1A" + _0x16ad40?.["awardPic"]);
               }
-              $.message.fix("🎉 恭喜获得实物，奖品名称：" + $.prizeShiWu);
+              $.message.fix("\uD83C\uDF89 \u606D\u559C\u83B7\u5F97\u5B9E\u7269\uFF0C\u5956\u54C1\u540D\u79F0\uFF1A" + $.prizeShiWu);
               process.env.WX_ADDRESS && (await sendRequest("updateAddress"), await $.wait(4000));
               break;
             case "coin":
@@ -392,19 +395,19 @@ async function handleResponse(_0x4ba7a4, _0xcf9f08) {
             case "coupon":
             case "chance":
             case "card":
-              console.log("🗑️ " + prize_type[_0x325127]);
+              console.log("\uD83D\uDDD1\uFE0F " + prize_type[_0x325127]);
               break;
             default:
-              console.log(_0x325127 + " 暂时未收录，请联系作者添加\n");
+              console.log(_0x325127 + " \u6682\u65F6\u672A\u6536\u5F55\uFF0C\u8BF7\u8054\u7CFB\u4F5C\u8005\u6DFB\u52A0\n");
               console.log("" + JSON.stringify($.exchangePost));
           }
         } else {
-          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("❓" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
+          _0xcf9f08.data?.["status"] == 500 ? console.log("" + _0xcf9f08.errorMessage) : console.log("\u2753" + _0x4ba7a4 + " " + JSON.stringify(_0xcf9f08));
         }
         break;
     }
   } catch (_0x4eb389) {
-    console.log("❌ 未能正确处理 " + _0x4ba7a4 + " 请求响应 " + (_0x4eb389.message || _0x4eb389));
+    console.log("\u274C \u672A\u80FD\u6B63\u786E\u5904\u7406 " + _0x4ba7a4 + " \u8BF7\u6C42\u54CD\u5E94 " + (_0x4eb389.message || _0x4eb389));
   }
 }
 async function sendRequest(_0x573c4f) {
@@ -440,7 +443,7 @@ async function sendRequest(_0x573c4f) {
       };
       _0x511253 = getSignBody("/jdJoinCardtf/shop/shopList", {});
       break;
-    case "绑定":
+    case "\u7ED1\u5B9A":
       _0x49ac39 += "/dm/front/jdJoinCardtf/customer/inviteRelation";
       _0x363bf4 = {
         open_id: "",
@@ -489,7 +492,7 @@ async function sendRequest(_0x573c4f) {
         awardId: $.awardId
       });
       break;
-    case "抽奖":
+    case "\u62BD\u5956":
       _0x49ac39 += "/dm/front/jdJoinCardtf/interactive/drawPost";
       _0x363bf4 = {
         open_id: "",
@@ -542,7 +545,7 @@ async function sendRequest(_0x573c4f) {
       });
       break;
     default:
-      console.log("❌ 未知请求 " + _0x573c4f);
+      console.log("\u274C \u672A\u77E5\u8BF7\u6C42 " + _0x573c4f);
       return;
   }
   const _0x49e3fb = {};
@@ -578,12 +581,12 @@ async function sendRequest(_0x573c4f) {
     _0x362807 > 0 && (await $.wait(1000));
     const _0x9aa33c = await common.request(_0x10d2fd);
     if (!_0x9aa33c.success) {
-      _0x1ac483 = "🚫 " + _0x573c4f + " 请求失败 ➜ " + _0x9aa33c.error;
+      _0x1ac483 = "\uD83D\uDEAB " + _0x573c4f + " \u8BF7\u6C42\u5931\u8D25 \u279C " + _0x9aa33c.error;
       _0x362807++;
       continue;
     }
     if (!_0x9aa33c.data) {
-      _0x1ac483 = "🚫 " + _0x573c4f + " 请求失败 ➜ 无响应数据";
+      _0x1ac483 = "\uD83D\uDEAB " + _0x573c4f + " \u8BF7\u6C42\u5931\u8D25 \u279C \u65E0\u54CD\u5E94\u6570\u636E";
       _0x362807++;
       continue;
     }
@@ -657,7 +660,7 @@ function getBlacklist() {
   if ($.blacklist == "") {
     return;
   }
-  console.log("当前已设置黑名单：");
+  console.log("\u5F53\u524D\u5DF2\u8BBE\u7F6E\u9ED1\u540D\u5355\uFF1A");
   const _0x3752b2 = Array.from(new Set($.blacklist.split("&")));
   console.log(_0x3752b2.join("&") + "\n");
   let _0x291406 = _0x3752b2,
@@ -1054,7 +1057,7 @@ function Env(t, e) {
         }
       };
       if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
-        let t = ["", "==============📣系统通知📣=============="];
+        let t = ["", "==============\uD83D\uDCE3\u7CFB\u7EDF\u901A\u77E5\uD83D\uDCE3=============="];
         t.push(e);
         s && t.push(s);
         i && t.push(i);
